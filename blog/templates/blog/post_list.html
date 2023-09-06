@@ -1,0 +1,29 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+<h1>Blog Posts</h1>
+<ul>
+    {% for post in posts %}
+        <li><a href="{% url 'post_detail' post.id %}">{{ post.title }}</a></li>
+
+        {% empty %}
+            <li>No products available</li>
+    {% endfor %}
+
+    <p>Categories:
+        {% for category in categories %}
+            <a href="{% url 'category_list' category.id %}">{{ category.name }}</a>
+            {% if not forloop.last %}, {% endif %}
+        {% endfor %}
+    </p>
+    
+    <p>Tags:
+        {% for tag in tags %}
+            <a href="{% url 'tag_list' tag.id %}">{{ tag.name }}</a>
+            {% if not forloop.last %}, {% endif %}
+        {% endfor %}
+    </p>
+    
+
+</ul>
+{% endblock %}

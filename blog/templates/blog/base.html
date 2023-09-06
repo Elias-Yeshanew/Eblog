@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Django Blog{% endblock %}</title>
+   
+    <!-- Add additional stylesheets and JavaScript files as needed -->
+</head>
+<body>
+    <header>
+        <h1><a href="{% url 'home' %}">Django Blog</a></h1>
+        <!-- Add navigation menu or links here -->
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+            {% else %}
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'register' %}">Register</a></li>
+                <li><a href="{% url 'create_post' %}">create</a></li>
+
+            {% endif %}
+                <!-- Add more navigation links -->
+            </ul>
+
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <!-- Add footer content here -->
+        &copy; {{ year }} Django Blog
+    </footer>
+</body>
+</html>

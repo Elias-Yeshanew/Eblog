@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Reply to Comment</h2>
+
+  <form method="post">
+    {% csrf_token %}
+    {{ comment_form.as_p }}
+    <button type="submit" class="btn btn-primary">Submit Reply</button>
+  </form>
+
+  <a href="{% url 'post_detail' post_id=parent_comment.post.id %}">Back to Post</a>
+{% endblock %}

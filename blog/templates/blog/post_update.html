@@ -1,0 +1,23 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+<h2>Edit Post</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <label for="categories">Categories:</label>
+    <select name="categories" id="categories">
+        {% for category in categories %}
+            <option value="{{ category.id }}">{{ category.name }}</option>
+        {% endfor %}
+    </select>
+    <label for="tags">Tags:</label>
+    <select name="tags" id="tags" multiple>
+        {% for tag in tags %}
+            <option value="{{ tag.id }}">{{ tag.name }}</option>
+        {% endfor %}
+    </select>
+    <input type="submit" class="btn btn-primary" value="Update">
+</form>
+<a href="{% url 'post_detail' post_id=object.id %}" class="btn btn-secondary">Cancel</a>
+{% endblock %}
